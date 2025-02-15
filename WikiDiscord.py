@@ -5,12 +5,14 @@ import wikipediaapi
 import sys
 from discord.ext import commands
 from discord import app_commands
+import logging
 
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger()
 
 class WikipediaBot:
     def __init__(self, token):
+        self.token = token
         self.user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
         self.wikipedia = wikipediaapi.Wikipedia('en', headers={'User-Agent': self.user_agent})
         self.bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
@@ -18,11 +20,11 @@ class WikipediaBot:
         @self.bot.event
         async def on_ready():
             logger.info(f'Logged in as {self.bot.user}!')
-            await self.bot.tree.sync()  # Sync slash commands
+            await self.bot.tree.sync()
 
         @self.bot.tree.command(name="search", description="Search Wikipedia")
         async def search(interaction: discord.Interaction, query: str):
-            await interaction.response.defer()  # Defer response to give bot time to process
+            await interaction.response.defer()
             await self.search(interaction, query)
 
     async def search(self, interaction, query):
@@ -41,7 +43,7 @@ class WikipediaBot:
 
     def run(self):
         logger.info("Bot is online and running...")
-        self.bot.run(self.token)
+        self.bot.run(self.token,log_level=logging.ERROR)
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Run a Wikipedia bot on Discord.")
