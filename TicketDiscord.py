@@ -1,4 +1,7 @@
 # way to run: python TicketDiscord.py token mod_role_id ticket_creation_channel ticket_transcript_channel
+# python 3.12.1: version tested to work
+# gonna need to do `pip install setuptools` for the 3.12 version of the panel, or `pip install setuptools==pip install setuptools==39.1.0`
+# or setuptools==69.5.1
 
 import argparse
 import nextcord
