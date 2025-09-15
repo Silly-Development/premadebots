@@ -1,0 +1,2 @@
+## Pterodactyl Eggs
+Premade Bots we offer on our service. Whilst access to the files are locked down on our site, you can download them here and run them yourself. Credit is not required however we will not assist with any issues you may have running them yourself. Whilst we do also provide pterodactyl eggs for these bots, we will not provide support for self hosted versions. These eggs definetly could be improved, however why mess with it when it works.

@@ -1,0 +1,42 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2025-09-15T01:17:04+01:00",
+    "name": "Discord Wikipedia",
+    "author": "gamer@sillydev.co.uk",
+    "description": null,
+    "features": null,
+    "docker_images": {
+        "Python v3.11": "ghcr.io\/silly-development\/yolks:python_3.11"
+    },
+    "file_denylist": [],
+    "startup": "\/usr\/local\/bin\/python \/home\/container\/bot.py {{BOT_TOKEN}}",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": [\r\n        \":\/home\/container$\",\r\n        \"STARTUP \/home\/container\"\r\n    ]\r\n}",
+        "logs": "{}",
+        "stop": "^^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# Python App Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\napt update\r\napt install -y python python-dev curl wget\r\n\r\n# Check if curl or wget is available, install if missing\r\nif ! command -v curl &> \/dev\/null\r\nthen\r\n    echo \"curl could not be found, installing wget instead\"\r\n    apt install -y wget\r\nfi\r\n\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\n\r\necho \"Installing required Python packages\"\r\npip install -U --prefix .local discord.py wikipedia-api\r\n\r\necho \"Downloading bot.py\"\r\ncurl -o bot.py https:\/\/raw.githubusercontent.com\/Silly-Development\/premadebots\/refs\/heads\/main\/WikiDiscord.py || wget -O bot.py https:\/\/raw.githubusercontent.com\/Silly-Development\/premadebots\/refs\/heads\/main\/WikiDiscord.py\r\n\r\necho -e \"Installation complete\"\r\nexit 0",
+            "container": "python:3.11-slim",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Discord Bot Token",
+            "description": "Get it from discord.com\/developers",
+            "env_variable": "BOT_TOKEN",
+            "default_value": "PUTYOURTOKENHERE",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|",
+            "field_type": "text"
+        }
+    ]
+}
