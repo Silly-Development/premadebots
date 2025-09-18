@@ -1,4 +1,4 @@
-TranslateDiscord.py == 1.0.0
-TranslateTelegram.py == 1.0.0
-WikiDiscord.py == 1.0.0
-WikiTelegram.py == 1.0.0
+TranslateDiscord.py == 1.0.1
+TranslateTelegram.py == 1.0.1
+WikiDiscord.py == 1.0.1
+WikiTelegram.py == 1.0.1
